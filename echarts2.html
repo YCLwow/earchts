@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+
+<head>
+  <meta charset="utf-8">
+  <title>折线图</title>
+</head>
+
+<body style="height: 100%; margin: 0">
+  <div id="container" :canvas="3D" style="height: 100%"></div>
+  <script type="text/javascript" src="echarts.min.js"></script>
+  <script type="text/javascript">
+    let dom = document.getElementById("container");
+    let myChart = echarts.init(dom);
+    option = {
+      color: ['#6AD4FD'],
+      tooltip: {
+        trigger: 'item',
+        formatter: function (data) {
+          return `<span style = "color:white">液位: 4m<span/>`
+        },
+        backgroundColor: 'rgba(108,214,251,0)',
+        axisPointer: {
+          type: 'cross',
+          label: {
+            backgroundColor: '#6a7985'
+          },
+        }
+      },
+      legend: {
+        data: ['Line 1', 'Line 2', 'Line 3', 'Line 4', 'Line 5']
+      },
+      // 下载图片
+      toolbox: {
+        feature: {
+          saveAsImage: {}
+        }
+      },
+      // grid: {
+      //   left: '3%',
+      //   right: '4%',
+      //   bottom: '3%',
+      //   containLabel: true
+      // },
+      xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        axisLine: {
+          show: true,
+          lineStyle: {
+            color: '#AAA'
+          }
+        },
+        splitLine: {
+          show: true, lineStyle: {
+            color: '#13365f'
+          }
+        }
+      },
+      yAxis: [
+        {
+          type: 'value',
+          splitLine: {
+          show: true, lineStyle: {
+            color: '#13365f'
+          }
+        }
+        }
+      ],
+      series: [
+        {
+          name: 'Line 1',
+          type: 'line',
+          symbol: 'circle',
+          symbolSize: [20, 20],
+          stack: 'Total',
+          smooth: true,//曲线
+          // lineStyle: {
+          //   width: 0
+          // },
+          showSymbol: false,
+          // areaStyle: {
+          //   opacity: 0.8,
+          //   color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+          //     {
+          //       offset: 0,
+          //       color: '#F2D032'
+          //     },
+          //     {
+          //       offset: 1,
+          //       color: 'rgb(0, 0, 0)'
+          //     }
+          //   ])
+          // },
+          // emphasis: {
+          //   focus: 'series'
+          // },
+          data: [140, 232, 101, 264, 90, 340, 250]
+        }
+      ]
+    };
+    // 实例化
+    myChart.setOption(option)
+  </script>
+</body>
+<style>
+  #container {
+    background-color: #182B43;
+  }
+</style>
+
+</html>
